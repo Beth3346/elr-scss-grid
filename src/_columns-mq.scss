@@ -1,0 +1,66 @@
+@import 'node_modules/elr-scss-functions/main';
+
+@mixin elr-columns-lg($config: ()) {
+  $config: extend(
+    (
+      column-count: 12
+    ),
+    $config
+  );
+
+  $column-count: map-get($config, column-count);
+
+  @for $i from 1 through $column-count {
+    .elr-col-lg-#{$i} {
+      @include elr-clearfix;
+      @media (min-width: 767px) {
+        width: (100 / $column-count) * $i * 1%;
+        float: left;
+      }
+    }
+  }
+}
+
+@mixin elr-columns-md($config: ()) {
+  $config: extend(
+    (
+      column-count: 12
+    ),
+    $config
+  );
+
+  $column-count: map-get($config, column-count);
+
+  @for $i from 1 through $column-count {
+    .elr-col-md-#{$i} {
+      @include elr-clearfix;
+
+      @media (max-width: 1024px) {
+        width: (100 / $column-count) * $i * 1%;
+        float: left;
+      }
+    }
+  }
+}
+
+@mixin elr-columns-sm($config: ()) {
+  $config: extend(
+    (
+      column-count: 12
+    ),
+    $config
+  );
+
+  $column-count: map-get($config, column-count);
+
+  @for $i from 1 through $column-count {
+    .elr-col-sm-#{$i} {
+      @include elr-clearfix;
+
+      @media (max-width: 568px) {
+        width: (100 / $column-count) * $i * 1%;
+        float: left;
+      }
+    }
+  }
+}

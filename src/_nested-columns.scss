@@ -1,0 +1,18 @@
+@import 'node_modules/elr-scss-functions/main';
+
+@mixin elr-nested-columns($config: ()) {
+  $config: extend(
+    (
+      column-count: 12
+    ),
+    $config
+  );
+
+  $column-count: map-get($config, column-count);
+
+  .elr-row {
+    .elr-container {
+      width: 100%;
+    }
+  }
+}

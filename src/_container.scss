@@ -1,0 +1,62 @@
+@import 'node_modules/elr-scss-functions/main';
+
+@mixin elr-clearfix() {
+  &::after,
+  &::before {
+    content: '';
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+@mixin elr-container($config: ()) {
+  $config: extend(
+    (
+      max-width: 1200px,
+      container-width: 100%,
+      responsive-container: 'yes'
+    ),
+    $config
+  );
+
+  $max-width: map-get($config, max-width);
+  $container-width: map-get($config, container-width);
+  $responsive-container: map-get($config, responsive-container);
+
+  .elr-container {
+    @include elr-clearfix;
+    margin: 0 auto;
+
+    @if ($responsive-container == 'yes') {
+      width: 95%;
+
+      @media (max-width: 1600px) {
+        max-width: to-rems(1600px);
+      }
+
+      @media (max-width: 1600px) {
+        max-width: to-rems(1400px);
+      }
+
+      @media (max-width: 1400px) {
+        max-width: to-rems(1200px);
+      }
+
+      @media (max-width: 1200px) {
+        max-width: to-rems(1024px);
+      }
+    } @else {
+      width: to-rems($container-width);
+      max-width: to-rems($max-width);
+    }
+  }
+
+  .elr-container-full {
+    @include elr-clearfix;
+    margin: 0;
+    width: 100%;
+  }
+}
