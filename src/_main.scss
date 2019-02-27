@@ -1,2 +1,325 @@
 @import 'node_modules/elr-scss-functions/main';
-@import 'src/grid';
+
+@mixin elr-clearfix() {
+  &::after,
+  &::before {
+    content: '';
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+@mixin elr-container($config: ()) {
+  $config: extend(
+    (
+      max-width: 1200px,
+      container-width: 100%,
+      responsive-container: 'yes'
+    ),
+    $config
+  );
+
+  $max-width: map-get($config, max-width);
+  $container-width: map-get($config, container-width);
+  $responsive-container: map-get($config, responsive-container);
+
+  .elr-container {
+    @include elr-clearfix;
+    margin: 0 auto;
+
+    @if ($responsive-container == 'yes') {
+      width: 95%;
+
+      @media (max-width: 1600px) {
+        max-width: to-rems(1600px);
+      }
+
+      @media (max-width: 1600px) {
+        max-width: to-rems(1400px);
+      }
+
+      @media (max-width: 1400px) {
+        max-width: to-rems(1200px);
+      }
+
+      @media (max-width: 1200px) {
+        max-width: to-rems(1024px);
+      }
+    } @else {
+      width: to-rems($container-width);
+      max-width: to-rems($max-width);
+    }
+  }
+
+  .elr-container-full {
+    @include elr-clearfix;
+    margin: 0;
+    width: 100%;
+  }
+}
+
+@mixin elr-row($config: ()) {
+  $config: extend(
+    (
+      max-width: 1200px
+    ),
+    $config
+  );
+
+  $max-width: map-get($config, max-width);
+
+  .elr-row {
+    @include elr-clearfix;
+    width: 100%;
+  }
+
+  .elr-container-full .elr-row {
+    max-width: $max-width;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@mixin elr-named-columns() {
+  .elr-col-full,
+  .elr-col-12 {
+    width: 100%;
+  }
+
+  .elr-col-half {
+    width: (100% / 2);
+  }
+
+  .elr-col-third {
+    width: (100% / 3);
+  }
+
+  .elr-col-two-thirds {
+    width: (100% / 3) * 2;
+  }
+
+  .elr-col-three-fourths {
+    width: (100% / 4) * 3;
+  }
+
+  .elr-col-quarter {
+    width: (100% / 4);
+  }
+
+  .elr-col-fifth {
+    width: (100% / 5);
+  }
+
+  .elr-col-four-fifths {
+    width: (100% / 5) * 4;
+  }
+
+  .elr-col-full,
+  .elr-col-half,
+  .elr-col-two-thirds,
+  .elr-col-third,
+  .elr-col-quarter,
+  .elr-col-fifth,
+  .elr-col-four-fifths,
+  .elr-col-three-fourths {
+    @include elr-clearfix;
+    float: left;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+      float: none;
+      width: 100%;
+    }
+  }
+}
+
+@mixin elr-columns($config: ()) {
+  $config: extend(
+    (
+      column-count: 12
+    ),
+    $config
+  );
+
+  $column-count: map-get($config, column-count);
+
+  @for $i from 1 through $column-count {
+    .elr-col-#{$i} {
+      @include elr-clearfix;
+      width: (100 / $column-count) * $i * 1%;
+      float: left;
+
+      @media (max-width: 768px) {
+        float: none;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@mixin elr-column-offset($config: ()) {
+  $config: extend(
+    (
+      column-count: 12
+    ),
+    $config
+  );
+
+  $column-count: map-get($config, column-count);
+
+  @for $i from 1 through $column-count {
+    .elr-col-offset-#{$i} {
+      margin-left: (100 / $column-count) * $i * 1%;
+
+      @media (max-width: 768px) {
+        margin-left: 0;
+      }
+    }
+  }
+}
+@mixin elr-columns-lg($config: ()) {
+  $config: extend(
+    (
+      column-count: 12
+    ),
+    $config
+  );
+
+  $column-count: map-get($config, column-count);
+
+  @for $i from 1 through $column-count {
+    .elr-col-lg-#{$i} {
+      @include elr-clearfix;
+      @media (min-width: 767px) {
+        width: (100 / $column-count) * $i * 1%;
+        float: left;
+      }
+    }
+  }
+}
+
+@mixin elr-columns-md($config: ()) {
+  $config: extend(
+    (
+      column-count: 12
+    ),
+    $config
+  );
+
+  $column-count: map-get($config, column-count);
+
+  @for $i from 1 through $column-count {
+    .elr-col-md-#{$i} {
+      @include elr-clearfix;
+
+      @media (max-width: 1024px) {
+        width: (100 / $column-count) * $i * 1%;
+        float: left;
+      }
+    }
+  }
+}
+
+@mixin elr-columns-sm($config: ()) {
+  $config: extend(
+    (
+      column-count: 12
+    ),
+    $config
+  );
+
+  $column-count: map-get($config, column-count);
+
+  @for $i from 1 through $column-count {
+    .elr-col-sm-#{$i} {
+      @include elr-clearfix;
+
+      @media (max-width: 568px) {
+        width: (100 / $column-count) * $i * 1%;
+        float: left;
+      }
+    }
+  }
+}
+
+@mixin elr-nested-columns($config: ()) {
+  $config: extend(
+    (
+      column-count: 12
+    ),
+    $config
+  );
+
+  $column-count: map-get($config, column-count);
+
+  .elr-row {
+    .elr-container {
+      width: 100%;
+    }
+  }
+}
+
+@mixin elr-grid($config: ()) {
+  $config: extend(
+    (
+      column-count: 12,
+      max-width: 1200px,
+      container-width: 100%,
+      responsive-container: 'yes'
+    ),
+    $config
+  );
+
+  $column-count: map-get($config, column-count);
+  $max-width: map-get($config, max-width);
+  $container-width: map-get($config, container-width);
+  $responsive-container: map-get($config, responsive-container);
+
+  @include elr-container(
+    $config: (
+      max-width: $max-width,
+      container-width: $container-width,
+      responsive-container: $responsive-container
+    )
+  );
+
+  @include elr-row(
+    $config: (
+      max-width: $max-width
+    )
+  );
+  @include elr-columns(
+    $config: (
+      column-count: $column-count
+    )
+  );
+  @include elr-columns-lg(
+    $config: (
+      column-count: $column-count
+    )
+  );
+  @include elr-columns-md(
+    $config: (
+      column-count: $column-count
+    )
+  );
+  @include elr-columns-sm(
+    $config: (
+      column-count: $column-count
+    )
+  );
+  @include elr-named-columns();
+  @include elr-nested-columns(
+    $config: (
+      column-count: $column-count
+    )
+  );
+  @include elr-column-offset(
+    $config: (
+      column-count: $column-count
+    )
+  );
+}
