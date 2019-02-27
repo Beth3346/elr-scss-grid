@@ -1,11 +1,11 @@
 @import 'node_modules/elr-scss-functions/main';
 
 // Grids
-@import 'container';
-@import 'row';
-@import 'columns';
-@import 'columns-mq';
-@import 'nested-columns';
+@import 'src/container';
+@import 'src/row';
+@import 'src/columns';
+@import 'src/columns-mq';
+@import 'src/nested-columns';
 
 @mixin elr-grid($config: ()) {
   $config: extend(
