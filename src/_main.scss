@@ -1,9 +1,9 @@
-@import 'node_modules/elr-scss-functions/main';
+@import "node_modules/elr-scss-functions/src/main";
 
 @mixin elr-clearfix() {
   &::after,
   &::before {
-    content: '';
+    content: "";
     display: table;
   }
 
@@ -17,7 +17,7 @@
     (
       max-width: 1200px,
       container-width: 100%,
-      responsive-container: 'yes'
+      responsive-container: "yes",
     ),
     $config
   );
@@ -30,7 +30,7 @@
     @include elr-clearfix;
     margin: 0 auto;
 
-    @if ($responsive-container == 'yes') {
+    @if ($responsive-container == "yes") {
       width: 95%;
 
       @media (max-width: 1600px) {
@@ -64,7 +64,7 @@
 @mixin elr-row($config: ()) {
   $config: extend(
     (
-      max-width: 1200px
+      max-width: 1200px,
     ),
     $config
   );
@@ -139,7 +139,7 @@
 @mixin elr-columns($config: ()) {
   $config: extend(
     (
-      column-count: 12
+      column-count: 12,
     ),
     $config
   );
@@ -163,7 +163,7 @@
 @mixin elr-column-offset($config: ()) {
   $config: extend(
     (
-      column-count: 12
+      column-count: 12,
     ),
     $config
   );
@@ -183,7 +183,7 @@
 @mixin elr-columns-lg($config: ()) {
   $config: extend(
     (
-      column-count: 12
+      column-count: 12,
     ),
     $config
   );
@@ -204,7 +204,7 @@
 @mixin elr-columns-md($config: ()) {
   $config: extend(
     (
-      column-count: 12
+      column-count: 12,
     ),
     $config
   );
@@ -226,7 +226,7 @@
 @mixin elr-columns-sm($config: ()) {
   $config: extend(
     (
-      column-count: 12
+      column-count: 12,
     ),
     $config
   );
@@ -248,7 +248,7 @@
 @mixin elr-nested-columns($config: ()) {
   $config: extend(
     (
-      column-count: 12
+      column-count: 12,
     ),
     $config
   );
@@ -268,7 +268,7 @@
       column-count: 12,
       max-width: 1200px,
       container-width: 100%,
-      responsive-container: 'yes'
+      responsive-container: "yes",
     ),
     $config
   );
@@ -282,44 +282,44 @@
     $config: (
       max-width: $max-width,
       container-width: $container-width,
-      responsive-container: $responsive-container
+      responsive-container: $responsive-container,
     )
   );
 
   @include elr-row(
     $config: (
-      max-width: $max-width
+      max-width: $max-width,
     )
   );
   @include elr-columns(
     $config: (
-      column-count: $column-count
+      column-count: $column-count,
     )
   );
   @include elr-columns-lg(
     $config: (
-      column-count: $column-count
+      column-count: $column-count,
     )
   );
   @include elr-columns-md(
     $config: (
-      column-count: $column-count
+      column-count: $column-count,
     )
   );
   @include elr-columns-sm(
     $config: (
-      column-count: $column-count
+      column-count: $column-count,
     )
   );
   @include elr-named-columns();
   @include elr-nested-columns(
     $config: (
-      column-count: $column-count
+      column-count: $column-count,
     )
   );
   @include elr-column-offset(
     $config: (
-      column-count: $column-count
+      column-count: $column-count,
     )
   );
 }
