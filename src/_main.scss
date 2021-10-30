@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "node_modules/elr-scss-functions/src/main";
 
 @mixin elr-clearfix() {
@@ -90,31 +91,31 @@
   }
 
   .elr-col-half {
-    width: (100% / 2);
+    width: math.div(100%, 2);
   }
 
   .elr-col-third {
-    width: (100% / 3);
+    width: math.div(100%, 3);
   }
 
   .elr-col-two-thirds {
-    width: (100% / 3) * 2;
+    width: math.div(100%, 3) * 2;
   }
 
   .elr-col-three-fourths {
-    width: (100% / 4) * 3;
+    width: math.div(100%, 4) * 3;
   }
 
   .elr-col-quarter {
-    width: (100% / 4);
+    width: math.div(100%, 4);
   }
 
   .elr-col-fifth {
-    width: (100% / 5);
+    width: math.div(100%, 5);
   }
 
   .elr-col-four-fifths {
-    width: (100% / 5) * 4;
+    width: math.div(100%, 5) * 4;
   }
 
   .elr-col-full,
@@ -149,7 +150,7 @@
   @for $i from 1 through $column-count {
     .elr-col-#{$i} {
       @include elr-clearfix;
-      width: (100 / $column-count) * $i * 1%;
+      width: math.div(100, $column-count) * $i * 1%;
       float: left;
 
       @media (max-width: 768px) {
@@ -172,7 +173,7 @@
 
   @for $i from 1 through $column-count {
     .elr-col-offset-#{$i} {
-      margin-left: (100 / $column-count) * $i * 1%;
+      margin-left: math.div(100, $column-count) * $i * 1%;
 
       @media (max-width: 768px) {
         margin-left: 0;
@@ -194,7 +195,7 @@
     .elr-col-lg-#{$i} {
       @include elr-clearfix;
       @media (min-width: 767px) {
-        width: (100 / $column-count) * $i * 1%;
+        width: math.div(100, $column-count) * $i * 1%;
         float: left;
       }
     }
@@ -216,7 +217,7 @@
       @include elr-clearfix;
 
       @media (max-width: 1024px) {
-        width: (100 / $column-count) * $i * 1%;
+        width: math.div(100, $column-count) * $i * 1%;
         float: left;
       }
     }
@@ -238,7 +239,7 @@
       @include elr-clearfix;
 
       @media (max-width: 568px) {
-        width: (100 / $column-count) * $i * 1%;
+        width: math.div(100, $column-count) * $i * 1%;
         float: left;
       }
     }
