@@ -1,5 +1,6 @@
 @use "sass:math";
 @import "elr-scss-functions/src/main";
+@import "elr-scss-config/src/main";
 
 @mixin elr-clearfix() {
   &::after,
@@ -267,7 +268,7 @@
   $config: extend(
     (
       column-count: 12,
-      max-width: 1200px,
+      max-width: $max-width,
       container-width: 100%,
       responsive-container: "yes",
     ),
